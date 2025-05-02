@@ -12,7 +12,7 @@ import ITConnectPage from "@/pages/ITConnectPage";
 import InvestorPage from "@/pages/InvestorPage";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-
+import BiduaVenturePage from "@/pages/BiduaVenturePage";
 function Router() {
   return (
     <Switch>
@@ -24,6 +24,7 @@ function Router() {
       <Route path="/oem-solutions" component={OEMSolutionsPage} />
       <Route path="/it-connect" component={ITConnectPage} />
       <Route path="/investor" component={InvestorPage} />
+      <Route path="/bidua-venture" component={BiduaVenturePage} />
       <Route component={NotFound} />
     </Switch>
   );
