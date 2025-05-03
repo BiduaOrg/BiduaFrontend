@@ -1,9 +1,23 @@
-
+import React, { useState } from "react";
+import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 const MOCK_TICKETS = [
   {
@@ -53,7 +67,16 @@ const MOCK_TICKETS = [
   }
 ];
 
-export function TicketManagement() {
+export function AllTicket() {
+  const [statusFilter, setStatusFilter] = useState<"all"|"open"|"in-progress"|"resolved">("all");
+  const [teamFilter, setTeamFilter] = useState<"all"|"Sales"|"Support"|"Technical"|"Business">("all");
+
+  const filtered = MOCK_TICKETS.filter(t => {
+    const statusMatch = statusFilter === "all" || t.status.toLowerCase() === statusFilter;
+    const teamMatch = teamFilter === "all" || t.assignedTeam === teamFilter;
+    return statusMatch && teamMatch;
+  });
+
   return (
     <Card>
       <CardHeader>
@@ -61,27 +84,34 @@ export function TicketManagement() {
       </CardHeader>
       <CardContent>
         <div className="flex gap-4 mb-4">
-          <Select defaultValue="all">
+          <Select
+            value={statusFilter}
+            onValueChange={(val) => setStatusFilter(val as any)}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by Status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Tickets</SelectItem>
               <SelectItem value="open">Open</SelectItem>
-              <SelectItem value="progress">In Progress</SelectItem>
+              <SelectItem value="in-progress">In Progress</SelectItem>
               <SelectItem value="resolved">Resolved</SelectItem>
             </SelectContent>
           </Select>
-          
-          <Select defaultValue="all">
+
+          <Select
+            value={teamFilter}
+            onValueChange={(val) => setTeamFilter(val as any)}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by Team" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Teams</SelectItem>
-              <SelectItem value="sales">Sales</SelectItem>
-              <SelectItem value="support">Support</SelectItem>
-              <SelectItem value="technical">Technical</SelectItem>
+              <SelectItem value="Sales">Sales</SelectItem>
+              <SelectItem value="Support">Support</SelectItem>
+              <SelectItem value="Technical">Technical</SelectItem>
+              <SelectItem value="Business">Business</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -100,7 +130,7 @@ export function TicketManagement() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {MOCK_TICKETS.map((ticket) => (
+            {filtered.map((ticket) => (
               <TableRow key={ticket.id}>
                 <TableCell>{ticket.id}</TableCell>
                 <TableCell>{ticket.subject}</TableCell>
@@ -114,7 +144,11 @@ export function TicketManagement() {
                 <TableCell>{ticket.assignedTeam}</TableCell>
                 <TableCell>{ticket.lastUpdate}</TableCell>
                 <TableCell>
-                  <Button variant="outline" size="sm">View Details</Button>
+                  <Link href={`/admin/tickets/id/${ticket.id}`}>
+                    <Button variant="outline" size="sm">
+                      View Details
+                    </Button>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}

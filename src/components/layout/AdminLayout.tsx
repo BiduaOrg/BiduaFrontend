@@ -1,163 +1,217 @@
-import { ReactNode, useState } from "react";
-import { useAuth } from "@/hooks/use-auth";
+import { useState, useEffect } from "react";
 import {
-  BarChart3,
-  Users,
-  Package,
-  MessageSquare,
-  Handshake,
-  LogOut,
-  Settings,
   Menu,
+  X,
+  Circle,
+  LayoutDashboard,
+  FileText,
+  MessageSquare,
+  ShoppingCart,
+  Package,
+  Building2,
+  Users,
+  UserCog,
+  Settings,
+  LogOut,
+  ChevronRight,
+  ChevronDown,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
 import { Link, useLocation } from "wouter";
 
-const NAV_ITEMS = [
-  { 
-    label: "Dashboard", 
-    icon: BarChart3, 
-    href: "/admin"
-  },
-  { 
-    label: "Users", 
-    icon: Users, 
-    href: "/admin/users"
-  },
-  { 
-    label: "Products", 
-    icon: Package, 
-    href: "/admin/products"
-  },
-  { 
-    label: "Contact Requests", 
-    icon: MessageSquare, 
-    href: "/admin/contacts"
-  },
-  { 
-    label: "Investor Inquiries", 
-    icon: Handshake, 
-    href: "/admin/investors"
-  },
-  { 
-    label: "Settings", 
-    icon: Settings, 
-    href: "/admin/settings"
-  },
-];
-
-export function AdminLayout({ children }: { children: ReactNode }) {
-  const { user, logoutMutation } = useAuth();
-  const [open, setOpen] = useState(false);
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
 
-  if (!user || user.role !== "admin") {
-    return null;
-  }
-
-  const handleLogout = () => {
-    logoutMutation.mutate();
-  };
-
   return (
-    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Mobile Sidebar */}
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger asChild className="absolute left-4 top-4 z-50 lg:hidden">
-          <Button variant="ghost" size="icon">
-            <Menu />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="px-0 w-64">
-          <div className="p-6">
-            <h2 className="text-xl font-bold">BIDUA Admin</h2>
-            <p className="text-sm text-muted-foreground">
-              Control panel
-            </p>
-          </div>
-          <Separator />
-          <div className="py-4">
-            <nav className="space-y-1 px-2">
-              {NAV_ITEMS.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <a
-                    className={cn(
-                      "group flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors",
-                      location === item.href
-                        ? "bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-                        : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-                    )}
-                    onClick={() => setOpen(false)}
-                  >
-                    <item.icon className="mr-3 h-5 w-5" />
-                    {item.label}
-                  </a>
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <Separator />
-          <div className="p-4">
-            <Button
-              variant="ghost"
-              className="w-full justify-start"
-              onClick={handleLogout}
-            >
-              <LogOut className="mr-3 h-5 w-5" />
-              Sign out
-            </Button>
-          </div>
-        </SheetContent>
-      </Sheet>
-
-      {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 border-r border-gray-200 dark:border-gray-800">
-        <div className="p-6 bg-white dark:bg-gray-950">
-          <h2 className="text-xl font-bold">BIDUA Admin</h2>
-          <p className="text-sm text-muted-foreground">
-            Control panel
-          </p>
-        </div>
-        <Separator />
-        <div className="flex-1 overflow-y-auto py-4 bg-white dark:bg-gray-950">
-          <nav className="space-y-1 px-2">
-            {NAV_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a
-                  className={cn(
-                    "group flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors",
-                    location === item.href
-                      ? "bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-                      : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-                  )}
-                >
-                  <item.icon className="mr-3 h-5 w-5" />
-                  {item.label}
-                </a>
-              </Link>
-            ))}
-          </nav>
-        </div>
-        <Separator />
-        <div className="p-4 bg-white dark:bg-gray-950">
-          <Button
-            variant="ghost"
-            className="w-full justify-start"
-            onClick={handleLogout}
-          >
-            <LogOut className="mr-3 h-5 w-5" />
-            Sign out
-          </Button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
+    <div className="flex h-screen">
+      {/* Reset dropdown on refresh */}
+      <Sidebar key={location} />
+      <main className="flex-1 p-6 bg-gray-900 text-white overflow-auto">
         {children}
       </main>
     </div>
   );
 }
+
+function Sidebar() {
+  const [collapsed, setCollapsed] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
+  const [location] = useLocation();
+
+  // Only run once on mount: restore saved dropdown
+  useEffect(() => {
+    const saved = sessionStorage.getItem("sidebar-dropdown");
+    if (saved) {
+      setDropdownOpen(saved);
+    }
+  }, []);
+
+  const toggleDropdown = (label: string) => {
+    const next = dropdownOpen === label ? null : label;
+    setDropdownOpen(next);
+    if (next) {
+      sessionStorage.setItem("sidebar-dropdown", next);
+    } else {
+      sessionStorage.removeItem("sidebar-dropdown");
+    }
+  };
+
+  const menuItems = [
+    {
+      icon: <LayoutDashboard className="w-5 h-5" />,
+      label: "Dashboard",
+      href: "/admin/Admindashboard",
+    },
+    {
+      icon: <FileText className="w-5 h-5" />,
+      label: "Leads",
+      children: [
+        { label: "All Leads", href: "/admin/alleads" },
+        { label: "Naploo", href: "/admin/naplooleads" },
+        { label: "OEM", href: "/admin/oemleads" },
+        { label: "Beauty", href: "/admin/beautyleads" },
+        { label: "CloudDrive", href: "/admin/clouddriveleads" },
+        { label: "IT Connect", href: "/admin/itconnectleads" },
+      ],
+    },
+    {
+      icon: <MessageSquare className="w-5 h-5" />,
+      label: "Tickets",
+      children: [{ label: "All Tickets", href: "/admin/alltickets" }],
+    },
+   
+    {
+      icon: <Package className="w-5 h-5" />,
+      label: "Products",
+      children: [
+        { label: "Add Product", href: "/admin/addproducts" },
+        { label: "View Products", href: "/admin/viewproducts" },
+      ],
+    },
+
+    {
+      icon: <ShoppingCart className="w-5 h-5" />,
+      label: "Orders",
+      children: [{ label: "All Orders", href: "/admin/orders" }],
+    },
+    
+    {
+      icon: <Building2 className="w-5 h-5" />,
+      label: "Partners",
+      children: [{ label: "All Partners", href: "/admin/partners" }],
+    },
+    {
+      icon: <Users className="w-5 h-5" />,
+      label: "Users",
+      children: [
+        { label: "Customers", href: "/admin/users/customers" },
+        { label: "Investors", href: "/admin/users/investors" },
+        { label: "Distributors", href: "/admin/users/distributors" },
+      ],
+    },
+    {
+      icon: <UserCog className="w-5 h-5" />,
+      label: "Admins",
+      children: [{ label: "All Admins", href: "/admin/admins" }],
+    },
+    {
+      icon: <Settings className="w-5 h-5" />,
+      label: "Settings",
+      children: [{ label: "General Settings", href: "/admin/settings" }],
+    },
+  ];
+
+  return (
+    <div
+      className={`flex flex-col bg-black text-white border-r border-gray-800 transition-all duration-300 overflow-y-auto ${
+        collapsed ? "w-16" : "w-64"
+      }`}
+    >
+      {/* Sidebar header */}
+      <div className="flex items-center justify-between p-4">
+        {!collapsed && <h2 className="text-lg font-semibold">Bidua Admin</h2>}
+        <button onClick={() => setCollapsed(!collapsed)} className="p-2 hover:bg-gray-700 rounded">
+          {collapsed ? <Menu className="w-5 h-5" /> : <X className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Sidebar menu */}
+      <div className="flex-1">
+        <nav className="px-2 space-y-2">
+          {menuItems.map((item) => (
+            <div key={item.label}>
+              {item.children ? (
+                <>
+                  <button
+                    onClick={() => toggleDropdown(item.label)}
+                    className="flex items-center w-full p-3 rounded hover:bg-gray-700 transition-colors"
+                  >
+                    {item.icon}
+                    {!collapsed && <span className="ml-2 text-sm">{item.label}</span>}
+                    {!collapsed && (
+                      <span className="ml-auto mr-2">
+                        {dropdownOpen === item.label ? (
+                          <ChevronDown className="w-4 h-4" />
+                        ) : (
+                          <ChevronRight className="w-4 h-4" />
+                        )}
+                      </span>
+                    )}
+                  </button>
+
+                  {!collapsed && (
+                    <div
+                      className={`ml-6 overflow-hidden transition-all duration-300 ${
+                        dropdownOpen === item.label ? "max-h-64" : "max-h-0"
+                      }`}
+                    >
+                      {item.children.map((sub) => (
+                        <Link key={sub.href} href={sub.href}>
+                          <div
+                            onClick={() => {
+                              // manually keep dropdown open
+                              sessionStorage.setItem("sidebar-dropdown", item.label);
+                            }}
+                            className={`flex items-center p-2 text-sm rounded hover:bg-gray-700 ${
+                              location === sub.href ? "bg-gray-700" : ""
+                            }`}
+                          >
+                            <Circle className="w-2 h-2 mr-2" />
+                            {sub.label}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link href={item.href}>
+                  <div
+                    onClick={() => sessionStorage.removeItem("sidebar-dropdown")}
+                    className={`flex items-center w-full p-3 rounded hover:bg-gray-700 transition-colors ${
+                      location === item.href ? "bg-gray-700" : ""
+                    }`}
+                  >
+                    {item.icon}
+                    {!collapsed && <span className="ml-2 text-sm">{item.label}</span>}
+                  </div>
+                </Link>
+              )}
+            </div>
+          ))}
+        </nav>
+      </div>
+
+      {/* Logout */}
+      <div className="p-4">
+        <Link href="/logout">
+          <div className="flex items-center p-2 rounded hover:bg-gray-700 transition-colors">
+            <LogOut className="w-5 h-5 mr-2" />
+            {!collapsed && <span className="text-sm">Sign out</span>}
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export { AdminLayout };
