@@ -91,7 +91,13 @@ function Sidebar() {
     {
       icon: <ShoppingCart className="w-5 h-5" />,
       label: "Orders",
-      children: [{ label: "All Orders", href: "/admin/orders" }],
+      children: [
+        { label: "All Orders", href: "/admin/allorders" },
+        { label: "Pending Orders", href: "/admin/pendingorder" },
+        { label: "Shipped Orders", href: "/admin/shippedorder" },
+        { label: "Delivered Orders", href: "/admin/deliveredorder" },
+        { label: "Cancelled Orders", href: "/admin/cancelledorder" },
+      ],
     },
     
     {

@@ -30,6 +30,11 @@ import { AllTicket } from "./admin panel/sidebar/tickets/AllTicket";
 import IdTickets from "./admin panel/sidebar/tickets/[id]";
 import AddProduct from "./admin panel/sidebar/products/AddProduct";
 import ViewProduct from "./admin panel/sidebar/products/Viewproduct";
+import AllOrders from "./admin panel/sidebar/order/allorder";
+import PendingOrders from "./admin panel/sidebar/order/pendingorder";
+import ShippedOrders from "./admin panel/sidebar/order/shippedorder";
+import DeliveredOrders from "./admin panel/sidebar/order/delivered";
+import CancelledOrders from "./admin panel/sidebar/order/cancelled";
 
 
 
@@ -110,6 +115,36 @@ function Router() {
 <ProtectedRoute path="/admin/viewproducts"adminOnly={true} component={() => (
           <AdminLayout>
             <ViewProduct />
+          </AdminLayout>
+        )}/>
+
+<ProtectedRoute path="/admin/allorders"adminOnly={true} component={() => (
+          <AdminLayout>
+            <AllOrders/>
+          </AdminLayout>
+        )}/>
+
+<ProtectedRoute path="/admin/pendingorder"adminOnly={true} component={() => (
+          <AdminLayout>
+            <PendingOrders/>
+          </AdminLayout>
+        )}/>
+
+<ProtectedRoute path="/admin/shippedorder"adminOnly={true} component={() => (
+          <AdminLayout>
+            <ShippedOrders/>
+          </AdminLayout>
+        )}/>
+      
+      <ProtectedRoute path="/admin/deliveredorder"adminOnly={true} component={() => (
+          <AdminLayout>
+            <DeliveredOrders/>
+          </AdminLayout>
+        )}/>
+
+<ProtectedRoute path="/admin/cancelledorder"adminOnly={true} component={() => (
+          <AdminLayout>
+            <CancelledOrders/>
           </AdminLayout>
         )}/>
       
