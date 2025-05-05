@@ -156,41 +156,45 @@ export default function AdminDashboard() {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Notifications</CardTitle>
-              <CardDescription>Latest updates and alerts</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {notifications.map((notification) => (
-                  <div key={notification.id} className="flex items-start gap-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
-                    <div
-                      className={`p-2 rounded-full ${
-                        notification.type === "urgent"
-                          ? "bg-red-100 text-red-600"
-                          : notification.type === "lead"
-                          ? "bg-green-100 text-green-600"
-                          : "bg-blue-100 text-blue-600"
-                      }`}
-                    >
-                      {notification.type === "urgent" ? (
-                        <AlertCircle className="w-4 h-4" />
-                      ) : notification.type === "lead" ? (
-                        <Users className="w-4 h-4" />
-                      ) : (
-                        <Bell className="w-4 h-4" />
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium">{notification.title}</h4>
-                      <p className="text-sm text-muted-foreground">{notification.message}</p>
-                      <span className="text-xs text-muted-foreground mt-1">{notification.time}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+  <CardHeader>
+    <CardTitle>Notifications</CardTitle>
+    <CardDescription>Latest updates and alerts</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <div className="space-y-4">
+      {notifications.map((notification) => (
+        <div
+          key={notification.id}
+          className="flex items-start gap-4 p-3 rounded-lg bg-gray-800"
+        >
+          <div
+            className={`p-2 rounded-full ${
+              notification.type === "urgent"
+                ? "bg-red-900 text-red-200"
+                : notification.type === "lead"
+                ? "bg-green-900 text-green-200"
+                : "bg-blue-900 text-blue-200"
+            }`}
+          >
+            {notification.type === "urgent" ? (
+              <AlertCircle className="w-4 h-4" />
+            ) : notification.type === "lead" ? (
+              <Users className="w-4 h-4" />
+            ) : (
+              <Bell className="w-4 h-4" />
+            )}
+          </div>
+          <div className="flex-1">
+            <h4 className="font-medium text-white">{notification.title}</h4>
+            <p className="text-sm text-gray-400">{notification.message}</p>
+            <span className="text-xs text-gray-500 mt-1">{notification.time}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </CardContent>
+</Card>
+
         </div>
 
         {/* Quick Actions */}

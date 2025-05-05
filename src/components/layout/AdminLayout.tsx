@@ -103,26 +103,26 @@ function Sidebar() {
     {
       icon: <Building2 className="w-5 h-5" />,
       label: "Partners",
-      children: [{ label: "All Partners", href: "/admin/partners" }],
+      children: [{ label: "All Partners", href: "/admin/allpartners" }],
     },
     {
       icon: <Users className="w-5 h-5" />,
       label: "Users",
       children: [
-        { label: "Customers", href: "/admin/users/customers" },
-        { label: "Investors", href: "/admin/users/investors" },
-        { label: "Distributors", href: "/admin/users/distributors" },
+        { label: "Customers", href: "/admin/customers" },
+        { label: "Investors", href: "/admin/investors" },
+        { label: "Distributors", href: "/admin/distributors" },
       ],
     },
     {
       icon: <UserCog className="w-5 h-5" />,
       label: "Admins",
-      children: [{ label: "All Admins", href: "/admin/admins" }],
+      children: [{ label: "All Admins", href: "/admin/alladmins" }],
     },
     {
       icon: <Settings className="w-5 h-5" />,
       label: "Settings",
-      children: [{ label: "General Settings", href: "/admin/settings" }],
+      children: [{ label: "Profile", href: "/admin/profile" }],
     },
   ];
 

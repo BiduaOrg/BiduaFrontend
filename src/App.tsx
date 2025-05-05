@@ -35,6 +35,15 @@ import PendingOrders from "./admin panel/sidebar/order/pendingorder";
 import ShippedOrders from "./admin panel/sidebar/order/shippedorder";
 import DeliveredOrders from "./admin panel/sidebar/order/delivered";
 import CancelledOrders from "./admin panel/sidebar/order/cancelled";
+import AllPartners from "./admin panel/sidebar/partners/allpartners";
+import Customers from "./admin panel/sidebar/users/Customers";
+import Investors from "./admin panel/sidebar/users/Investors";
+import Distributors from './admin panel/sidebar/users/Distributors';
+import AllAdmins from "./admin panel/sidebar/admin/AllAdmins";
+import { Settings } from "lucide-react";
+import SettingsPage from "./admin panel/sidebar/settings/Profile";
+import Profile from "./admin panel/sidebar/settings/Profile";
+
 
 
 
@@ -56,7 +65,7 @@ function Router() {
       <Route path="/auth" component={AuthPage} />
      
 
-      {/* Protected Routes */}
+  
 
       {/* Admin Routes - Protected */}
       <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly={true} />
@@ -106,31 +115,31 @@ function Router() {
           </AdminLayout>
         )}/>
 
-     <ProtectedRoute path="/admin/addproducts"adminOnly={true} component={() => (
+      <ProtectedRoute path="/admin/addproducts"adminOnly={true} component={() => (
           <AdminLayout>
             <AddProduct />
           </AdminLayout>
         )}/>
 
-<ProtectedRoute path="/admin/viewproducts"adminOnly={true} component={() => (
+      <ProtectedRoute path="/admin/viewproducts"adminOnly={true} component={() => (
           <AdminLayout>
             <ViewProduct />
           </AdminLayout>
         )}/>
 
-<ProtectedRoute path="/admin/allorders"adminOnly={true} component={() => (
+      <ProtectedRoute path="/admin/allorders"adminOnly={true} component={() => (
           <AdminLayout>
             <AllOrders/>
           </AdminLayout>
         )}/>
 
-<ProtectedRoute path="/admin/pendingorder"adminOnly={true} component={() => (
+      <ProtectedRoute path="/admin/pendingorder"adminOnly={true} component={() => (
           <AdminLayout>
             <PendingOrders/>
           </AdminLayout>
         )}/>
 
-<ProtectedRoute path="/admin/shippedorder"adminOnly={true} component={() => (
+      <ProtectedRoute path="/admin/shippedorder"adminOnly={true} component={() => (
           <AdminLayout>
             <ShippedOrders/>
           </AdminLayout>
@@ -142,12 +151,49 @@ function Router() {
           </AdminLayout>
         )}/>
 
-<ProtectedRoute path="/admin/cancelledorder"adminOnly={true} component={() => (
+      <ProtectedRoute path="/admin/cancelledorder"adminOnly={true} component={() => (
           <AdminLayout>
             <CancelledOrders/>
           </AdminLayout>
         )}/>
       
+      <ProtectedRoute path="/admin/allpartners"adminOnly={true} component={() => (
+        <AdminLayout>
+          <AllPartners />
+        </AdminLayout>
+      )}/>
+
+    <ProtectedRoute path="/admin/customers"adminOnly={true} component={() => (
+        <AdminLayout>
+      <Customers />
+      </AdminLayout>
+      )}/>
+
+    <ProtectedRoute path="/admin/investors"adminOnly={true} component={() => (
+    <AdminLayout>
+      <Investors />
+    </AdminLayout>
+      )}/>
+
+    <ProtectedRoute path="/admin/distributors"adminOnly={true} component={() => (
+    <AdminLayout>
+      <Distributors />
+    </AdminLayout>
+      )}/>
+
+    <ProtectedRoute path="/admin/alladmins"adminOnly={true} component={() => (
+    <AdminLayout>
+      <AllAdmins />
+    </AdminLayout>
+      )}/>
+
+<ProtectedRoute path="/admin/profile"adminOnly={true} component={() => (
+    <AdminLayout>
+      <Profile />
+    </AdminLayout>
+      )}/>
+
+
       {/* 404 */}
       <Route component={NotFound} />
     </Switch>
