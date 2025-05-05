@@ -12,7 +12,8 @@ import {
   FaLaptopCode, FaBed,
   FaRProject,
   FaEye,
-  FaClock
+  FaClock,
+  FaUserCheck
 } from "react-icons/fa";
 import BiduaLogo from "@/assets/bidua-logo.png";
 
@@ -26,10 +27,12 @@ export function Header() {
   const [showMobileUpcoming, setShowMobileUpcoming] = useState(false);
   const [showMobileBidua, setShowMobileBidua] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState<string | null>(null);
+  
+  
 
 
   const isScrolled = scrollY > 50;
-  const divisionRef = useRef(null);
+  const divisionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -63,7 +66,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center space-x-8 relative">
+        <div className="hidden lg:flex justify-center items-center space-x-8 relative w-full">
           <Link href="/" className={cn("flex items-center hover:text-secondary", location === "/" && "text-secondary font-semibold")}>
             <Home className="w-4 h-4 mr-1" /> Home
           </Link>
@@ -71,10 +74,14 @@ export function Header() {
             <Info className="w-4 h-4 mr-1" /> About
           </Link>
 
-          <div className="relative group" ref={divisionRef}
-     onMouseEnter={() => setShowDivision(true)}
-     onMouseLeave={() => { setShowDivision(false); setShowSubMenu(null); }}>
-  <button className="flex items-center hover:text-secondary transition-colors">
+          <div className="relative" ref={divisionRef}>
+  <button
+    className="flex items-center hover:text-secondary transition-colors"
+    onClick={() => {
+      setShowDivision((prev) => !prev);
+      setShowSubMenu(null); // Reset submenu when toggling
+    }}
+  >
     <FaIndustry className="w-4 h-4 mr-1" />
     Division
     <ChevronDown className={cn("w-4 h-4 ml-1 transition-transform", showDivision && "rotate-180")} />
@@ -82,15 +89,16 @@ export function Header() {
 
   {showDivision && (
     <div className="absolute left-0 mt-2 bg-background shadow-lg p-2 w-64 border rounded-md z-50">
-      
       {/* Running */}
-      <div className="group relative">
+      <div className="relative">
         <button
-          onMouseEnter={() => setShowSubMenu('running')}
+          onClick={() =>
+            setShowSubMenu(showSubMenu === 'running' ? null : 'running')
+          }
           className="flex justify-between w-full items-center px-3 py-2 hover:text-secondary"
         >
           <span className="flex items-center">
-            <FaRProject className="w-4 h-4 mr-2" /> Running
+            <FaRProject className="w-4 h-4 mr-2" /> ONGOING
           </span>
           <ChevronRight className="w-4 h-4" />
         </button>
@@ -107,13 +115,15 @@ export function Header() {
       </div>
 
       {/* Upcoming Soon */}
-      <div className="group relative">
+      <div className="relative">
         <button
-          onMouseEnter={() => setShowSubMenu('upcoming')}
+          onClick={() =>
+            setShowSubMenu(showSubMenu === 'upcoming' ? null : 'upcoming')
+          }
           className="flex justify-between w-full items-center px-3 py-2 hover:text-secondary"
         >
           <span className="flex items-center">
-            <FaClock className="w-4 h-4 mr-2" /> Upcoming Soon
+            <FaClock className="w-4 h-4 mr-2" /> UPCOMING SOON
           </span>
           <ChevronRight className="w-4 h-4" />
         </button>
@@ -133,20 +143,22 @@ export function Header() {
       </div>
 
       {/* Future Plans */}
-      <div className="group relative">
+      <div className="relative">
         <button
-          onMouseEnter={() => setShowSubMenu('future')}
+          onClick={() =>
+            setShowSubMenu(showSubMenu === 'future' ? null : 'future')
+          }
           className="flex justify-between w-full items-center px-3 py-2 hover:text-secondary"
         >
           <span className="flex items-center">
-            <FaEye className="w-4 h-4 mr-2" /> Future Plans
+            <FaEye className="w-4 h-4 mr-2" /> FUTURE PLANNING
           </span>
           <ChevronRight className="w-4 h-4" />
         </button>
         {showSubMenu === 'future' && (
-          <div className="absolute left-full top-0 bg-background shadow-lg border rounded-md w-64 p-2 z-50">
-            <Link href="/bidua-human-verification" className="flex items-center px-2 py-1 hover:text-secondary">
-              <UserCheck className="w-4 h-4 mr-2" /> Human Verification
+          <div className="absolute left-full top-0 bg-background shadow-lg border rounded-md w-56 p-2 z-50">
+            <Link href="/human-verification" className="flex items-center px-2 py-1 hover:text-secondary">
+              <FaUserCheck className="w-4 h-4 mr-2" /> Human Verification
             </Link>
           </div>
         )}
@@ -154,6 +166,7 @@ export function Header() {
     </div>
   )}
 </div>
+
 
             {/* CTA Buttons */}
             <Link href="/investor" className="block">
@@ -194,7 +207,7 @@ export function Header() {
             <div className="pl-4 space-y-2">
               {/* Running */}
               <button onClick={() => setShowMobileRunning(!showMobileRunning)} className="flex items-center justify-between w-full text-left font-medium">
-                <span className="flex items-center"><FaRProject className="w-4 h-4 mr-2" />Running</span>
+                <span className="flex items-center"><FaRProject className="w-4 h-4 mr-2" />ONGOING</span>
                 <span className="text-xl">{showMobileRunning ? "-" : "+"}</span>
               </button>
               {showMobileRunning && (
@@ -206,7 +219,7 @@ export function Header() {
 
               {/* Upcoming Soon */}
               <button onClick={() => setShowMobileUpcoming(!showMobileUpcoming)} className="flex items-center justify-between w-full text-left font-medium mt-2">
-                <span className="flex items-center"><FaClock className="w-4 h-4 mr-2"/>Upcoming Soon</span>
+                <span className="flex items-center"><FaClock className="w-4 h-4 mr-2"/>UPCOMING SOON</span>
                 <span className="text-xl">{showMobileUpcoming ? "-" : "+"}</span>
               </button>
               {showMobileUpcoming && (
@@ -220,13 +233,13 @@ export function Header() {
               )}
                {/* BIDUA Ventures inside Upcoming */}
                <button onClick={() => setShowMobileBidua(!showMobileBidua)} className="flex items-center justify-between w-full text-left font-medium mt-2">
-                    <span className="flex items-center"><FaEye className="w-4 h-4 mr-2" />Future planning</span>
+                    <span className="flex items-center"><FaEye className="w-4 h-4 mr-2" />FUTURE PLANNING</span>
                     <span className="text-xl">{showMobileBidua ? "-" : "+"}</span>
                   </button>
                   {showMobileBidua && (
                     <div className="pl-4 space-y-1">
                       <Link href="/bidua-ventures" className="flex items-center hover:text-secondary"><Briefcase className="w-4 h-4 mr-2" /> Go to BIDUA Ventures</Link>
-                      <Link href="/bidua-human-verification" className="flex items-center hover:text-secondary"><UserCheck className="w-4 h-4 mr-2" /> Human Verification</Link>
+                      <Link href="/human-verification" className="flex items-center hover:text-secondary"><UserCheck className="w-4 h-4 mr-2" /> Human Verification</Link>
                     </div>
                   )}
             </div>
@@ -238,11 +251,11 @@ export function Header() {
               <DollarSign className="w-4 h-4" /> Invest in Naploo™
             </Button>
           </Link>
-          <a href="#contact" className="block">
+          <Link href="#contact" className="block">
             <Button className="w-full flex items-center justify-center gap-2">
               <Phone className="w-4 h-4" /> Contact Us
             </Button>
-          </a>
+          </Link>
         </div>
       )}
     </header>
