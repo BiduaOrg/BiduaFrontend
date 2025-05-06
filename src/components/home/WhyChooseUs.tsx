@@ -23,7 +23,7 @@ function FeatureCard({ icon: Icon, title, description, index }: FeatureCardProps
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div className="w-16 h-16 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+      <div className="w-16 h-16 bg-black bg-opacity-20 rounded-full flex items-center justify-center mb-4">
         <Icon className="text-secondary text-2xl" />
       </div>
       <h3 className="text-xl font-bold mb-3">{title}</h3>

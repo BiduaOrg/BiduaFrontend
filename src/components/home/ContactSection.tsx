@@ -58,7 +58,7 @@ export function ContactSection() {
             {/* Contact Details */}
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center mr-4">
                   <MapPin className="text-secondary" />
                 </div>
                 <div>
@@ -72,7 +72,7 @@ export function ContactSection() {
               </div>
               
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center mr-4">
                   <Mail className="text-secondary" />
                 </div>
                 <div>
@@ -87,7 +87,7 @@ export function ContactSection() {
               </div>
               
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center mr-4">
                   <Phone className="text-secondary" />
                 </div>
                 <div>
@@ -106,16 +106,16 @@ export function ContactSection() {
             <div className="mt-8">
               <h4 className="text-xl font-bold mb-4">Follow Us</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
+                <a href="#" className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
                   <Linkedin className="text-foreground" />
                 </a>
-                <a href="#" className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
+                <a href="#" className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
                   <Instagram className="text-foreground" />
                 </a>
-                <a href="#" className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
+                <a href="#" className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
                   <Facebook className="text-foreground" />
                 </a>
-                <a href="#" className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
+                <a href="#" className="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center hover:bg-secondary transition-all">
                   <Twitter className="text-foreground" />
                 </a>
               </div>
