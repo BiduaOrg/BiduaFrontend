@@ -73,7 +73,7 @@ export function DivisionsSection() {
     {
       id: "naploo",
       title: "Naploo™ – Sleeping Pod Hotels",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      image: "/assets/pod.avif",
       listItems: [
         "India's First Smart Pod Hotel Chain",
         "Book Pods By Hour (Customer Side)",
@@ -91,7 +91,7 @@ export function DivisionsSection() {
     {
       id: "beauty",
       title: "BIDUA Beauty Care – Skincare & Wellness",
-      image: "https://images.unsplash.com/photo-1620916566886-f294cbcfb7e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1157&q=80",
+      image: "/assets/Beauty.png",
       listItems: [
         "Premium Day and Night Cream for Dark Circles and Dark Spots",
         "Natural, Safe, Dermatologically Tested Products",
@@ -105,7 +105,7 @@ export function DivisionsSection() {
     {
       id: "clouddrive",
       title: "BIDUA CloudDrive™ – Smart Storage Solutions",
-      image: "https://images.unsplash.com/photo-1563770660941-10e645373720?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      image: "/assets/Cloud.jpg",
       listItems: [
         "Hybrid Storage Device (Offline + Cloud + Sim + WiFi)",
         "Auto-Sync Data on the Move",
@@ -119,7 +119,7 @@ export function DivisionsSection() {
     {
       id: "oem",
       title: "BIDUA OEM Solutions – Manufacturing Hub",
-      image: "https://images.unsplash.com/photo-1530265399982-38a1b2a10eee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      image: "/assets/OEM.jpg",
       listItems: [
         "White-Label and Private Label Solutions",
         "Electronics, FMCG, Beauty, Healthcare, Furniture, Food, Automobiles, and More",
@@ -133,7 +133,7 @@ export function DivisionsSection() {
     {
       id: "it",
       title: "BIDUA IT Connect – B2B Software Portal",
-      image: "https://images.unsplash.com/photo-1480694313141-fce5e697ee25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      image: "/assets/IT solution.webp",
       listItems: [
         "Pre-made and Custom Software Solutions",
         "Centralized Customer Interaction Model",
