@@ -3,38 +3,38 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import video1 from "@/assets/1.mp4"; 
+import video2 from "@/assets/Hotel.mp4"
+import video3 from "@/assets/Beauty care.mp4";
+import video4 from "@/assets/IT Connect2.mp4";
 
 type SlideData = {
   id: number;
-  image: string;
+  image?: string;
+  video?: string;
   alt: string;
 };
 
 const slides: SlideData[] = [
   {
     id: 0,
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-    alt: "Naploo Pod Hotel",
+    video: video1,
+    alt: "Video 1",
   },
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1787&q=80",
-    alt: "BIDUA Beauty Care",
+    video: video2,
+    alt: " Hotel",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1617791160536-598cf32026fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80",
-    alt: "BIDUA CloudDrive",
+    video: video3,
+    alt: "Beauty Care",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1747&q=80",
-    alt: "BIDUA OEM Solutions",
-  },
-  {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1768&q=80",
-    alt: "BIDUA IT Connect",
+    video: video4,
+    alt: "IT Connect",
   },
 ];
 
@@ -52,7 +52,7 @@ export function HeroSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [nextSlide]);
@@ -61,12 +61,28 @@ export function HeroSlider() {
     <section className="hero-slider">
       {slides.map((slide, index) => (
         <div
-          key={slide.id}
-          className={cn("hero-slide", currentSlide === index && "active")}
-          style={{ backgroundImage: `url(${slide.image})` }}
-          aria-hidden={currentSlide !== index}
-        >
-          <div className="gradient-overlay flex items-center justify-center w-full h-full">
+        key={slide.id}
+        className={cn("hero-slide", currentSlide === index && "active")}
+        aria-hidden={currentSlide !== index}
+      >
+        {slide.video ? (
+          <video
+            src={slide.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          />
+        ) : (
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${slide.image})` }}
+          />
+        )}
+      
+      <div className="gradient-overlay flex items-center justify-center w-full h-full relative z-10 bg-gradient-to-t from-black/60 to-transparent">
+
             <div className="container mx-auto px-4 pt-20">
               <div className="max-w-3xl mx-auto text-center">
                 <motion.h1
@@ -109,11 +125,7 @@ export function HeroSlider() {
                       Invest in Naploo™
                     </Button>
                   </Link>
-                  <Link href="#contact">
-                    <Button variant="secondary" size="lg" className="cta-button">
-                      Contact Us
-                    </Button>
-                  </Link>
+                 
                 </motion.div>
               </div>
             </div>
@@ -128,7 +140,7 @@ export function HeroSlider() {
             <button
               key={slide.id}
               className={cn(
-                "w-3 h-3 bg-white bg-opacity-50 rounded-full transition-all",
+                "w-3 h-1 bg-white bg-opacity-50 rounded-full transition-all",
                 currentSlide === slide.id && "bg-opacity-100 w-6"
               )}
               onClick={() => goToSlide(slide.id)}
