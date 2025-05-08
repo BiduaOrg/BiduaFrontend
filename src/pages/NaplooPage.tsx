@@ -28,6 +28,8 @@ export default function NaplooPage() {
         <meta name="keywords" content="Naploo, pod hotels, capsule hotels, sleeping pods, hourly stay, rest pods, BIDUA" />
       </Helmet>
 
+      
+
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-b from-background to-primary">
         <div className="container mx-auto px-4">
