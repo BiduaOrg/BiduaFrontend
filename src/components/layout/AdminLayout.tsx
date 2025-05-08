@@ -22,10 +22,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [location] = useLocation();
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-gray-50">
       {/* Reset dropdown on refresh */}
       <Sidebar key={location} />
-      <main className="flex-1 p-6 bg-gray-900 text-white overflow-auto">
+      <main className="flex-1 p-4 md:p-6 overflow-auto">
         {children}
       </main>
     </div>
@@ -128,7 +128,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col bg-black text-white border-r border-gray-800 transition-all duration-300 overflow-y-auto ${
+      className={`flex flex-col bg-white shadow-lg border-r border-gray-200 transition-all duration-300 overflow-y-auto ${
         collapsed ? "w-16" : "w-64"
       }`}
     >
@@ -149,7 +149,7 @@ function Sidebar() {
                 <>
                   <button
                     onClick={() => toggleDropdown(item.label)}
-                    className="flex items-center w-full p-3 rounded hover:bg-gray-700 transition-colors"
+                    className="flex items-center w-full p-3 rounded hover:bg-blue-50 text-gray-700 transition-colors"
                   >
                     {item.icon}
                     {!collapsed && <span className="ml-2 text-sm">{item.label}</span>}
@@ -177,8 +177,8 @@ function Sidebar() {
                               // manually keep dropdown open
                               sessionStorage.setItem("sidebar-dropdown", item.label);
                             }}
-                            className={`flex items-center p-2 text-sm rounded hover:bg-gray-700 ${
-                              location === sub.href ? "bg-gray-700" : ""
+                            className={`flex items-center p-2 text-sm rounded hover:bg-blue-50 text-gray-600 ${
+                              location === sub.href ? "bg-blue-50 text-blue-600" : ""
                             }`}
                           >
                             <Circle className="w-2 h-2 mr-2" />

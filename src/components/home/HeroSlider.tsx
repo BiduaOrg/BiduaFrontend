@@ -85,14 +85,14 @@ export function HeroSlider() {
 
             <div className="container mx-auto px-4 pt-20">
               <div className="max-w-3xl mx-auto text-center">
-                <motion.h1
-                  className="text-3xl md:text-5xl font-bold mb-4"
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  BIDUA Industries Pvt Ltd
-                </motion.h1>
+              <motion.h1
+  className="text-3xl md:text-5xl font-bold mb-4" style={{ color: "rgb(28, 127, 171)" }}
+  initial={{ y: -20, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.5 }}
+>
+  BIDUA Industries Pvt Ltd
+</motion.h1>
                 <motion.p
                   className="text-xl md:text-2xl font-semibold mb-8"
                   initial={{ y: 20, opacity: 0 }}
@@ -116,9 +116,19 @@ export function HeroSlider() {
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
                   <Link href="#divisions">
-                    <Button variant="default" size="lg" className="cta-button">
-                      Explore Divisions
-                    </Button>
+                  <Button
+  variant="default"
+  size="lg"
+  className="cta-button"
+  onClick={() => {
+    const divisionsSection = document.getElementById("divisions");
+    if (divisionsSection) {
+      divisionsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }}
+>
+  Explore Divisions
+</Button>
                   </Link>
                   <Link href="/investor">
                     <Button variant="outline" size="lg" className="cta-button">

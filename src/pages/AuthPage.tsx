@@ -1,314 +1,122 @@
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Helmet } from "react-helmet";
-import { useLocation } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
-import { useAuth } from "@/hooks/use-auth";
+
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader2, UserPlus, LogIn, Mail, Lock, User } from "lucide-react";
-import { toast } from "@/hooks/use-toast"
-import { navigate } from "wouter/use-browser-location";
+import { Link } from "wouter";
 
-const loginSchema = z.object({
-  username: z.string().min(2, { message: "Username must be at least 2 characters." }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-});
+export default function AboutPage() {
+  const values = [
+    { name: "Innovation", desc: "Constantly pushing boundaries and embracing new technologies" },
+    { name: "Excellence", desc: "Maintaining the highest standards in everything we do" },
+    { name: "Integrity", desc: "Operating with transparency and ethical business practices" },
+    { name: "Customer Focus", desc: "Putting our customers' needs at the heart of our decisions" },
+    { name: "Sustainability", desc: "Ensuring our operations benefit future generations" },
+    { name: "Collaboration", desc: "Working together to achieve common goals" },
+  ];
 
-const registerSchema = z.object({
-  username: z.string().min(2, { message: "Username must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  fullName: z.string().optional(),
-  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match.",
-  path: ["confirmPassword"],
-});
-
-export default function AuthPage() {
-  const [activeTab, setActiveTab] = useState<"login" | "register">("login");
-  const { user, loginMutation, registerMutation } = useAuth();
-  const [, navigate] = useLocation();
-
-  if (user) {
-    navigate("/");
-    return null;
-  }
+  const milestones = [
+    { year: "2020", event: "Founded BIDUA Industries" },
+    { year: "2021", event: "Launched IT Connect Division" },
+    { year: "2022", event: "Expanded to Beauty Care" },
+    { year: "2023", event: "Introduced Cloud Drive Solutions" },
+  ];
 
   return (
-    <>
-      <Helmet>
-        <title>BIDUA Industries - Login/Register</title>
-        <meta name="description" content="Login or register for BIDUA Industries" />
-      </Helmet>
+    <div className="pt-24">
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-16">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6">About BIDUA Industries</h1>
+              <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
+            </div>
+          </motion.div>
 
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary/10 p-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-md w-full"
-        >
-          <div className="text-center mb-8">
-            <motion.h1 
-              className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
+          <div className="grid md:grid-cols-2 gap-8 mb-20">
+            <motion.div
+              className="bg-card p-8 rounded-lg shadow-sm"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              Welcome to BIDUA
-            </motion.h1>
-            <motion.p 
-              className="text-muted-foreground mt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              <h2 className="text-2xl font-bold mb-4 text-primary">Our Story</h2>
+              <p className="text-muted-foreground">
+                BIDUA Industries is a multi-division company committed to innovation and excellence across various sectors.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="bg-card p-8 rounded-lg shadow-sm"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              {activeTab === "login" ? "Sign in to access your account" : "Create a new account"}
-            </motion.p>
+              <h2 className="text-2xl font-bold mb-4 text-primary">Our Vision</h2>
+              <p className="text-muted-foreground">
+                To become a global leader in innovative solutions across multiple industries, creating value for our customers, employees, and society.
+              </p>
+            </motion.div>
           </div>
 
-          <motion.div 
-            className="bg-card rounded-xl shadow-xl p-6 backdrop-blur-sm border border-border/50"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.1 }}
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="flex gap-4 mb-6">
-              <Button
-                variant={activeTab === "login" ? "default" : "outline"}
-                className="w-full"
-                onClick={() => setActiveTab("login")}
-              >
-                <LogIn className="mr-2 h-4 w-4" />
-                Login
-              </Button>
-              <Button
-                variant={activeTab === "register" ? "default" : "outline"}
-                className="w-full"
-                onClick={() => setActiveTab("register")}
-              >
-                <UserPlus className="mr-2 h-4 w-4" />
-                Register
-              </Button>
+            <h2 className="text-2xl font-bold mb-8 text-center">Our Values</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {values.map((value, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-card p-6 rounded-lg shadow-sm"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  <h3 className="text-xl font-semibold mb-2 text-secondary">{value.name}</h3>
+                  <p className="text-muted-foreground">{value.desc}</p>
+                </motion.div>
+              ))}
             </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, x: activeTab === "login" ? -20 : 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: activeTab === "login" ? 20 : -20 }}
-                transition={{ duration: 0.2 }}
-              >
-                {activeTab === "login" ? <LoginForm /> : <RegisterForm />}
-              </motion.div>
-            </AnimatePresence>
           </motion.div>
-        </motion.div>
-      </div>
-    </>
-  );
-}
 
-function LoginForm() {
-  const { loginMutation } = useAuth();
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: { username: "", password: "" },
-  });
-
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
-    try {
-      await loginMutation.mutateAsync(values);
-      navigate("/"); // Redirect after successful login
-    } catch (error) {
-      toast({
-        title: "Login Failed",
-        description: error instanceof Error ? error.message : "Please check your credentials and try again",
-        variant: "destructive"
-      });
-    }
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input className="pl-9" placeholder="Enter username" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input type="password" className="pl-9" placeholder="••••••••" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={loginMutation.isPending}
-        >
-          {loginMutation.isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Logging in...
-            </>
-          ) : (
-            <>
-              <LogIn className="mr-2 h-4 w-4" />
-              Login
-            </>
-          )}
-        </Button>
-      </form>
-    </Form>
-  );
-}
-
-function RegisterForm() {
-  const { registerMutation } = useAuth();
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      fullName: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof registerSchema>) {
-    await registerMutation.mutateAsync(values);
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input className="pl-9" placeholder="Choose username" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input type="email" className="pl-9" placeholder="Enter email" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="fullName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Full Name (Optional)</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input className="pl-9" placeholder="Enter full name" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input type="password" className="pl-9" placeholder="Create password" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input type="password" className="pl-9" placeholder="Confirm password" {...field} />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={registerMutation.isPending}
-        >
-          {registerMutation.isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Creating Account...
-            </>
-          ) : (
-            <>
-              <UserPlus className="mr-2 h-4 w-4" />
-              Register
-            </>
-          )}
-        </Button>
-      </form>
-    </Form>
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl font-bold mb-8 text-center">Our Journey</h2>
+            <div className="max-w-2xl mx-auto">
+              {milestones.map((milestone, index) => (
+                <motion.div
+                  key={index}
+                  className="flex items-center mb-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  <div className="w-24 font-bold text-secondary">{milestone.year}</div>
+                  <div className="flex-1 bg-card p-4 rounded-lg shadow-sm ml-4">
+                    {milestone.event}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 }

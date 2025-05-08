@@ -12,7 +12,17 @@ import {
   Zap,
   Shield,
   Wifi,
-  UploadCloud
+  UploadCloud,
+  Cloud,
+  HardDrive,
+  Share2,
+  FileCheck,
+  Settings,
+  Clock,
+  Globe,
+  Battery,
+  Cpu,
+  RefreshCw
 } from "lucide-react";
 import {
   Card,
@@ -391,17 +401,20 @@ export default function CloudDrivePage() {
               <table className="w-full">
                 <tbody>
                   {[
-                    { feature: "Storage Options", details: "128 GB / 256 GB / 512 GB" },
-                    { feature: "Storage Split", details: "50% Offline, 50% Cloud" },
-                    { feature: "SIM Card Slot", details: "Yes (Nano SIM, 4G/5G)" },
-                    { feature: "WiFi", details: "Yes (2.4GHz + 5GHz Bands)" },
-                    { feature: "Battery Backup", details: "6+ Hours" },
-                    { feature: "Charging Port", details: "USB-C Fast Charging" },
-                    { feature: "Security", details: "Encrypted Transfers, User-Controlled Sharing" },
-                    { feature: "Compatibility", details: "Windows, MacOS, Android, iOS" }
+                    { feature: "Storage Options", details: "128 GB / 256 GB / 512 GB", icon: HardDrive },
+                    { feature: "Storage Split", details: "50% Offline, 50% Cloud", icon: Cloud },
+                    { feature: "SIM Card Slot", details: "Yes (Nano SIM, 4G/5G)", icon: Cpu },
+                    { feature: "WiFi", details: "Yes (2.4GHz + 5GHz Bands)", icon: Wifi },
+                    { feature: "Battery Backup", details: "6+ Hours", icon: Battery },
+                    { feature: "Charging Port", details: "USB-C Fast Charging", icon: Zap },
+                    { feature: "Security", details: "Encrypted Transfers, User-Controlled Sharing", icon: Shield },
+                    { feature: "Compatibility", details: "Windows, MacOS, Android, iOS", icon: Globe }
                   ].map((spec, index) => (
                     <tr key={index} className={index % 2 === 0 ? "bg-primary bg-opacity-10" : ""}>
-                      <td className="py-4 px-6 border-b border-primary border-opacity-20 font-semibold">{spec.feature}</td>
+                      <td className="py-4 px-6 border-b border-primary border-opacity-20 font-semibold flex items-center gap-2">
+                        <spec.icon className="w-5 h-5 text-secondary" />
+                        {spec.feature}
+                      </td>
                       <td className="py-4 px-6 border-b border-primary border-opacity-20">{spec.details}</td>
                     </tr>
                   ))}
@@ -428,13 +441,13 @@ export default function CloudDrivePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              "Dual Storage (Offline + Cloud)",
-              "Built-in SIM and WiFi",
-              "Inbuilt Battery (no dependency on laptop)",
-              "Smart Auto-Upload",
-              "Instant, Secure File Sharing",
-              "No Need to Wait for Uploads",
-              "Access Files from Anywhere"
+              { text: "Dual Storage (Offline + Cloud)", icon: <HardDrive className="text-secondary" /> },
+              { text: "Built-in SIM and WiFi", icon: <Wifi className="text-secondary" /> },
+              { text: "Inbuilt Battery (no dependency on laptop)", icon: <Battery className="text-secondary" /> },
+              { text: "Smart Auto-Upload", icon: <RefreshCw className="text-secondary" /> },
+              { text: "Instant, Secure File Sharing", icon: <Share2 className="text-secondary" /> },
+              { text: "No Need to Wait for Uploads", icon: <Clock className="text-secondary" /> },
+              { text: "Access Files from Anywhere", icon: <Globe className="text-secondary" /> }
             ].map((advantage, index) => (
               <motion.div
                 key={index}
@@ -446,7 +459,8 @@ export default function CloudDrivePage() {
               >
                 <div className="flex items-center">
                   <Check className="text-secondary mr-3 flex-shrink-0" />
-                  <span className="text-lg">{advantage}</span>
+                  {advantage.icon}
+              <span className="text-lg">{advantage.text}</span>
                 </div>
               </motion.div>
             ))}

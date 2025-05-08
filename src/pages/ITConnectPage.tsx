@@ -10,7 +10,15 @@ import {
   Braces, 
   Shield, 
   Cpu, 
-  ArrowRight
+  ArrowRight,
+  Server,
+  MonitorSmartphone,
+  Workflow,
+  MessageSquare,
+  Settings2,
+  Users,
+  FileCode2,
+  Network
 } from "lucide-react";
 import {
   Card,
@@ -202,19 +210,23 @@ export default function ITConnectPage() {
               {[
                 {
                   title: "Single Point of Contact",
-                  description: "A dedicated account manager handles all your software needs, ensuring consistent communication and service"
+                  description: "A dedicated account manager handles all your software needs, ensuring consistent communication and service",
+                  icon: <Users className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Needs Analysis",
-                  description: "Our experts work closely with you to understand your business requirements and recommend the right solutions"
+                  description: "Our experts work closely with you to understand your business requirements and recommend the right solutions",
+                  icon: <MonitorSmartphone className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Customized Implementation",
-                  description: "Solutions tailored to your specific needs with seamless integration into your existing systems"
+                  description: "Solutions tailored to your specific needs with seamless integration into your existing systems",
+                  icon: <Settings2 className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Ongoing Support",
-                  description: "Continuous technical support, updates, and maintenance to keep your software running optimally"
+                  description: "Continuous technical support, updates, and maintenance to keep your software running optimally",
+                  icon: <Network className="text-secondary w-6 h-6" />
                 }
               ].map((point, index) => (
                 <motion.div
@@ -257,12 +269,12 @@ export default function ITConnectPage() {
                 {
                   title: "Discovery & Planning",
                   description: "Understanding your requirements, goals, and challenges to create a comprehensive project plan",
-                  icon: <SearchIcon className="text-secondary w-6 h-6" />
+                  icon: <MessageSquare className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Design & Architecture",
                   description: "Creating detailed technical architecture and UI/UX designs that align with your business objectives",
-                  icon: <PenToolIcon className="text-secondary w-6 h-6" />
+                  icon: <FileCode2 className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Development",
@@ -272,17 +284,17 @@ export default function ITConnectPage() {
                 {
                   title: "Testing & QA",
                   description: "Rigorous testing procedures to ensure quality, security, and performance",
-                  icon: <CheckSquareIcon className="text-secondary w-6 h-6" />
+                  icon: <Settings2 className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Deployment",
                   description: "Smooth deployment with minimal disruption to your business operations",
-                  icon: <Upload className="text-secondary w-6 h-6" />
+                  icon: <Server className="text-secondary w-6 h-6" />
                 },
                 {
                   title: "Maintenance & Support",
                   description: "Ongoing support, updates, and improvements to keep your software performing optimally",
-                  icon: <LifeBuoyIcon className="text-secondary w-6 h-6" />
+                  icon: <Workflow className="text-secondary w-6 h-6" />
                 }
               ].map((step, index) => (
                 <motion.div

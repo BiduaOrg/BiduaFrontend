@@ -27,8 +27,8 @@ export function Header() {
   const [showMobileUpcoming, setShowMobileUpcoming] = useState(false);
   const [showMobileBidua, setShowMobileBidua] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState<string | null>(null);
-  
-  
+
+
 
 
   const isScrolled = scrollY > 50;
@@ -157,8 +157,8 @@ export function Header() {
         </button>
         {showSubMenu === 'future' && (
           <div className="absolute left-full top-0 bg-background shadow-lg border rounded-md w-56 p-2 z-50">
-            <Link href="/human-verification" className="flex items-center px-2 py-1 hover:text-secondary">
-              <FaUserCheck className="w-4 h-4 mr-2" /> Human Verification
+            <Link href="/bidua-ventures" className="flex items-center px-2 py-1 hover:text-secondary">
+              <Briefcase className="w-4 h-4 mr-2" /> BIDUA Ventures
             </Link>
           </div>
         )}
@@ -174,11 +174,11 @@ export function Header() {
               <DollarSign className="w-4 h-4" /> Invest in Naploo™
             </Button>
           </Link>
-          <a href="#contact" className="block">
+          <Link href="/contact" className="block">
             <Button className="w-full flex items-center justify-center gap-2">
               <Phone className="w-4 h-4" /> Contact Us
             </Button>
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -228,7 +228,7 @@ export function Header() {
                   <Link href="/oem-solutions" className="flex items-center hover:text-secondary"><FaIndustry className="w-4 h-4 mr-2" /> OEM Solution</Link>
                   <Link href="/cloud-drive" className="flex items-center hover:text-secondary"><FaCloudUploadAlt className="w-4 h-4 mr-2" /> Cloud Drive</Link>
 
-                 
+
                 </div>
               )}
                {/* BIDUA Ventures inside Upcoming */}
@@ -239,7 +239,6 @@ export function Header() {
                   {showMobileBidua && (
                     <div className="pl-4 space-y-1">
                       <Link href="/bidua-ventures" className="flex items-center hover:text-secondary"><Briefcase className="w-4 h-4 mr-2" /> Go to BIDUA Ventures</Link>
-                      <Link href="/human-verification" className="flex items-center hover:text-secondary"><UserCheck className="w-4 h-4 mr-2" /> Human Verification</Link>
                     </div>
                   )}
             </div>
