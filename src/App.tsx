@@ -8,7 +8,6 @@ import CloudDrivePage from "@/pages/CloudDrivePage";
 import OEMSolutionsPage from "@/pages/OEMSolutionsPage";
 import ITConnectPage from "@/pages/ITConnectPage";
 import InvestorPage from "@/pages/InvestorPage";
-import AuthPage from "./pages/AuthPage";
 import BiduaVenturePage from "@/pages/BiduaVenturePage";
 import HumanVerification from "@/pages/HumanVerification";
 import ContactPage from "@/pages/ContactPage";
@@ -43,6 +42,9 @@ import Investors from "./admin panel/sidebar/users/Investors";
 import Distributors from './admin panel/sidebar/users/Distributors';
 import AllAdmins from "./admin panel/sidebar/admin/AllAdmins";
 import Profile from "./admin panel/sidebar/settings/Profile";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
+import LoginPage from "./admin panel/login/loginpage";
 
 function Router() {
   return (
@@ -56,10 +58,10 @@ function Router() {
       <Route path="/oem-solutions" component={OEMSolutionsPage} />
       <Route path="/it-connect" component={ITConnectPage} />
       <Route path="/investor" component={InvestorPage} />
-      <Route path="/auth" component={AuthPage} />
       <Route path="/bidua-ventures" component={BiduaVenturePage} />
       <Route path="/human-verification" component={HumanVerification} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/login" component={LoginPage} />
 
       {/* Admin Routes */}
       <ProtectedRoute path="/admin" component={AdminDashboard} />
@@ -137,23 +139,28 @@ function Router() {
 function App() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith("/admin");
+  const isLoginPage = location === "/login";
 
   return (
-    <AuthProvider>
-      <div className="min-h-screen flex flex-col">
-        {!isAdminRoute && <Header />}
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <div className="min-h-screen flex flex-col">
+          {/* Show Header only if NOT admin route AND NOT login page */}
+          {!isAdminRoute && !isLoginPage && <Header />}
 
-        <main className={isAdminRoute ? "flex" : "flex-grow"}>
-          <div className="flex-1">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Router />
-            </Suspense>
-          </div>
-        </main>
+          <main className={isAdminRoute ? "flex" : "flex-grow"}>
+            <div className="flex-1">
+              <Suspense fallback={<LoadingSpinner />}>
+                <Router />
+              </Suspense>
+            </div>
+          </main>
 
-        {!isAdminRoute && <Footer />}
-      </div>
-    </AuthProvider>
+          {/* Show Footer only if NOT admin route AND NOT login page */}
+          {!isAdminRoute && !isLoginPage && <Footer />}
+        </div>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
