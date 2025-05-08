@@ -16,7 +16,6 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { AuthProvider } from "@/hooks/use-auth";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-
 import AdminDashboard from "@/admin panel/AdminDashboard";
 import AdminLayout from "./components/layout/AdminLayout";
 import NaplooLeads from "./admin panel/sidebar/leads/NaplooLeads";
@@ -40,6 +39,10 @@ import Investors from "./admin panel/sidebar/users/Investors";
 import Distributors from './admin panel/sidebar/users/Distributors';
 import AllAdmins from "./admin panel/sidebar/admin/AllAdmins";
 import Profile from "./admin panel/sidebar/settings/Profile";
+import BiduaVenturePage from '@/pages/BiduaVenturePage';
+import HumanVerification from '@/pages/HumanVerification';
+import LoginPage from "./admin panel/login/loginpage";
+
 
 
 
@@ -59,6 +62,9 @@ function Router() {
       <Route path="/oem-solutions" component={OEMSolutionsPage} />
       <Route path="/it-connect" component={ITConnectPage} />
       <Route path="/investor" component={InvestorPage} />
+      <Route path="/bidua-venture" component={BiduaVenturePage} />
+      <Route path="/human-verification" component={HumanVerification} />
+      <Route path="/login" component={LoginPage} />
     
      
 
