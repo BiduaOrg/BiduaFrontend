@@ -20,7 +20,7 @@ import { ReloadIcon } from "@radix-ui/react-icons";
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  phone: z.string().min(10, { message: "Please enter a valid phone number" }),
+  Subject: z.string().min(10, { message: "Please type your issue " }),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
 });
 
@@ -35,7 +35,7 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
+      Subject: "",
       message: "",
     },
   });
@@ -105,13 +105,13 @@ export function ContactForm() {
         
         <FormField
           control={form.control}
-          name="phone"
+          name="Subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone</FormLabel>
+              <FormLabel>Subject</FormLabel>
               <FormControl>
                 <Input 
-                  placeholder="Your phone number" 
+                  placeholder="Your Subject here" 
                   type="tel" 
                   {...field} 
                   className="bg-background border-primary focus-visible:ring-secondary"

@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
-import { Check, ShieldCheck, Clock, Star } from "lucide-react";
+import { 
+  Check, 
+  ShieldCheck, 
+  Clock, 
+  Star,
+  Stars,
+  Sparkles,
+  Heart,
+  Leaf,
+  Sun,
+  Moon,
+  Award,
+  ThumbsUp,
+  FlaskConical,
+  Droplet,
+  PackageCheck,
+  Hand,
+  Shield
+} from "lucide-react";
 import {
   Card,
   CardContent,
@@ -107,26 +125,38 @@ export default function BeautyCarePage() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="font-semibold">Size:</div>
+                      <div className="font-semibold flex items-center gap-2">
+                        <PackageCheck className="w-4 h-4 text-secondary" />
+                        Size:
+                      </div>
                       <div>50 Grams Jar</div>
-                      
-                      <div className="font-semibold">MRP:</div>
+
+                      <div className="font-semibold flex items-center gap-2">
+                        <ThumbsUp className="w-4 h-4 text-secondary" />
+                        MRP:
+                      </div>
                       <div>₹1,499/- (Inclusive of All Taxes)</div>
-                      
-                      <div className="font-semibold">Shelf Life:</div>
+
+                      <div className="font-semibold flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-secondary" />
+                        Shelf Life:
+                      </div>
                       <div>24 months</div>
-                      
-                      <div className="font-semibold">Packaging:</div>
+
+                      <div className="font-semibold flex items-center gap-2">
+                        <PackageCheck className="w-4 h-4 text-secondary" />
+                        Packaging:
+                      </div>
                       <div>Premium, Travel-Friendly Jar with Inner Seal Protection</div>
                     </div>
-                    
+
                     <div className="pt-2">
                       <p className="font-semibold flex items-center">
                         <Check className="text-secondary mr-2 h-5 w-5" />
                         Designed for 30–45 days of regular use (Day and Night).
                       </p>
                     </div>
-                    
+
                     <div className="pt-4">
                       <Button size="lg" className="w-full">
                         Shop Now
@@ -171,8 +201,8 @@ export default function BeautyCarePage() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="bg-card p-6 rounded-lg"
               >
-                <div className="flex items-start">
-                  <Check className="text-secondary mr-3 mt-1 flex-shrink-0" />
+                <div className="flex items-start bg-card/50 p-4 rounded-lg hover:bg-card/70 transition-colors">
+                  <Sparkles className="text-secondary mr-3 mt-1 flex-shrink-0 w-5 h-5" />
                   <p className="text-lg">{benefit}</p>
                 </div>
               </motion.div>
@@ -233,9 +263,12 @@ export default function BeautyCarePage() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="bg-card bg-opacity-50 p-6 rounded-lg flex items-start"
               >
-                <Star className="text-secondary mt-1 mr-3 flex-shrink-0" />
+                <Leaf className="text-secondary mt-1 mr-3 flex-shrink-0 w-6 h-6" />
                 <div>
-                  <h3 className="text-xl font-bold mb-2">{ingredient.name}</h3>
+                  <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                    {ingredient.name}
+                    <FlaskConical className="w-4 h-4 text-secondary" />
+                  </h3>
                   <p>{ingredient.description}</p>
                 </div>
               </motion.div>
@@ -268,25 +301,28 @@ export default function BeautyCarePage() {
             >
               <div className="flex items-start mb-6">
                 <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <Star className="text-secondary" />
+                  <Sun className="text-secondary w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Morning (Day Use)</h3>
+                  <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                    <Sparkles className="text-secondary w-5 h-5" />
+                    Morning (Day Use)
+                  </h3>
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Droplet className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Cleanse your face.</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Heart className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Apply a small amount of BIDUA Beauty Cream under the eyes and on dark spots.</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Hand className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Massage gently until fully absorbed.</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Shield className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Follow up with sunscreen for daytime protection.</span>
                     </li>
                   </ul>
@@ -303,25 +339,28 @@ export default function BeautyCarePage() {
             >
               <div className="flex items-start mb-6">
                 <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <Star className="text-secondary" />
+                  <Moon className="text-secondary w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Night (Night Use)</h3>
+                  <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                    <Stars className="text-secondary w-5 h-5" />
+                    Night (Night Use)
+                  </h3>
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Droplet className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Cleanse your face.</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Heart className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Apply a thin, even layer of cream over the targeted areas.</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Moon className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Leave it overnight without washing.</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
+                      <Sparkles className="text-secondary mr-2 mt-1 flex-shrink-0 h-5 w-5" />
                       <span>Wake up to nourished, rejuvenated skin.</span>
                     </li>
                   </ul>
@@ -366,7 +405,7 @@ export default function BeautyCarePage() {
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute h-full w-0.5 bg-secondary left-1/2 transform -translate-x-1/2"></div>
-              
+
               {/* Timeline Items */}
               {[
                 {

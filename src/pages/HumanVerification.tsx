@@ -1,107 +1,130 @@
-import { Link } from 'wouter';
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Shield, 
+  Clock, 
+  Camera, 
+  FileText,
+  CheckCircle,
+  AlertTriangle,
+  Users,
+  Building,
+  Home,
+  Briefcase,
+  IndianRupee,
+  MapPin
+} from "lucide-react";
 
-export default function HumanVerificationLanding() {
+export default function HumanVerificationPage() {
   return (
-    <div className="max-w-5xl mx-auto p-20 space-y-16 bg-gradient-to-r from-black via-green-700 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-background">
+      <Helmet>
+        <title>BIDUA Human Verification - Know Who You're Hiring</title>
+        <meta name="description" content="Avoid frauds, thefts, and fake IDs. Let BIDUA physically verify your maids, drivers, tenants, or employees — PAN India." />
+      </Helmet>
 
       {/* Hero Section */}
-      <section className="text-center">
-        <h1 className="text-4xl font-extrabold mb-4 text-yellow-400">
-          Human Verification Service
-        </h1>
-        <p className="text-lg mb-6">
-          Stop fraud before it happens. BIDUA verifies your maids, drivers, tenants, or employees physically across India.
-        </p>
-        <Link href="/services/human-verification/book">
-          <button className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition transform hover:scale-105">
-            Book Now – ₹999 per Person
-          </button>
-        </Link>
-      </section>
-
-      {/* Why This Matters */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Why Human Verification is Critical Today</h2>
-        <ul className="list-disc ml-6 space-y-2">
-          <li>Thousands of fraud and theft cases by unknown domestic workers and tenants reported each year.</li>
-          <li>Fake IDs and unverifiable references are common in big cities and small towns alike.</li>
-          <li>Hiring blindly puts your family, property, and business at risk.</li>
-        </ul>
-      </section>
-
-      {/* How It Works */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
-        <ol className="list-decimal ml-6 space-y-2">
-          <li>Submit the person's name, address, phone, and photo (if available).</li>
-          <li>Make secure online payment (₹999).</li>
-          <li>Our field executive visits the address physically.</li>
-          <li>We record a video, click photos, and validate their identity.</li>
-          <li>You'll receive a link to access their full verification report.</li>
-        </ol>
-      </section>
-
-      {/* Use Cases */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Who Should Use This Service?</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white text-black border p-6 rounded-lg shadow-md">
-            Families hiring maids, nannies, cooks
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center space-y-8">
+          <div className="flex justify-center gap-2 items-center mb-6">
+            <Shield className="w-8 h-8 text-green-500" />
+            <span className="text-sm font-medium text-green-500">Trusted Verification Service</span>
           </div>
-          <div className="bg-white text-black border p-6 rounded-lg shadow-md">
-            Employers recruiting drivers, helpers
-          </div>
-          <div className="bg-white text-black border p-6 rounded-lg shadow-md">
-            Landlords renting properties
-          </div>
-          <div className="bg-white text-black border p-6 rounded-lg shadow-md">
-            Offices hiring contract or field staff
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">
+            Know Who You're Hiring
+          </h1>
+
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+            Avoid frauds, thefts, and fake IDs. Let BIDUA physically verify your maids, drivers, tenants, or employees — PAN India.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg rounded-full">
+              <IndianRupee className="w-5 h-5 mr-2" /> Book Verification - ₹999
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* What You Get */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">What’s Included in Verification?</h2>
-        <ul className="list-disc ml-6 space-y-2">
-          <li>On-site address visit across any city or village (PAN India)</li>
-          <li>Live photos & 1-minute video proof from verified agent</li>
-          <li>Optional ID verification (if provided)</li>
-          <li>Secure digital report sent to your email</li>
-        </ul>
+      {/* Services Overview */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { icon: MapPin, title: "Physical Visit", desc: "On-site verification" },
+            { icon: Camera, title: "Visual Proof", desc: "Photos & videos" },
+            { icon: FileText, title: "ID Validation", desc: "Document checks" },
+            { icon: Clock, title: "48hr Report", desc: "Fast turnaround" }
+          ].map((service, index) => (
+            <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <service.icon className="w-12 h-12 mx-auto mb-4 text-green-500" />
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-muted-foreground">{service.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </section>
 
-      {/* FAQ */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div>
-            <strong>Q: Is this service available in my area?</strong><br />
-            Yes! We cover all major cities, towns, and even remote locations across India.
-          </div>
-          <div>
-            <strong>Q: How long does it take?</strong><br />
-            Reports are typically ready within 24–48 hours.
-          </div>
-          <div>
-            <strong>Q: Will I get photo or video?</strong><br />
-            Yes. We share photos and a short video of the person at the address.
-          </div>
-          <div>
-            <strong>Q: Can I verify multiple people?</strong><br />
-            Yes, you can submit separate bookings for each individual.
+      {/* Target Users */}
+      <section className="py-16 px-4 bg-card/30">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Who Needs Verification?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { icon: Home, text: "Families hiring domestic help" },
+              { icon: Building, text: "Businesses & offices" },
+              { icon: Users, text: "Landlords & property owners" },
+              { icon: Briefcase, text: "Employers & HR teams" }
+            ].map((user, index) => (
+              <div key={index} className="flex flex-col items-center text-center p-6">
+                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                  <user.icon className="w-8 h-8 text-green-600" />
+                </div>
+                <p className="font-medium">{user.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="text-center bg-green-800 py-8 rounded-lg shadow-lg">
-        <h2 className="text-xl font-bold mb-4">Start Verifying with BIDUA Today</h2>
-        <Link href="/services/human-verification/book">
-          <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 transition transform hover:scale-105">
+      {/* Verification Form */}
+      <section className="py-16 px-4">
+        <div className="max-w-3xl mx-auto">
+          <Card>
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-bold mb-6 text-center">Book Verification Now</h2>
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Input placeholder="Your Name" />
+                  <Input placeholder="Phone Number" type="tel" />
+                  <Input placeholder="Email Address" type="email" className="md:col-span-2" />
+                  <Input placeholder="Person to Verify (Name)" className="md:col-span-2" />
+                  <Input placeholder="Verification Address" className="md:col-span-2" />
+                </div>
+                <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg">
+                  Proceed to Payment - ₹999
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 mb-20">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-green-600 to-green-700 rounded-3xl p-12 text-center text-white">
+          <AlertTriangle className="w-16 h-16 mx-auto mb-6" />
+          <h2 className="text-3xl font-bold mb-4">Don't Risk Your Safety</h2>
+          <p className="text-lg mb-8">Get complete peace of mind with BIDUA's professional verification service.</p>
+          <Button size="lg" variant="secondary" className="text-green-700 bg-white hover:bg-gray-100 px-8 py-6 text-lg rounded-full">
             Book Verification Now
-          </button>
-        </Link>
+          </Button>
+        </div>
       </section>
     </div>
   );

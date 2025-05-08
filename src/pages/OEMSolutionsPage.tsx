@@ -9,7 +9,18 @@ import {
   Settings, 
   ShieldCheck, 
   Clock, 
-  CheckCircle2
+  CheckCircle2,
+  Truck,
+  Boxes,
+  FlaskConical,
+  Users,
+  Award,
+  Building2,
+  Banknote,
+  FileCheck,
+  CpuIcon,
+  Network,
+  Medal
 } from "lucide-react";
 import {
   Tabs,
@@ -92,10 +103,18 @@ export default function OEMSolutionsPage() {
 
           <Tabs defaultValue="electronics" className="w-full">
             <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full h-auto mb-8">
-              <TabsTrigger value="electronics" className="py-3">Electronics</TabsTrigger>
-              <TabsTrigger value="fmcg" className="py-3">FMCG</TabsTrigger>
-              <TabsTrigger value="healthcare" className="py-3">Healthcare</TabsTrigger>
-              <TabsTrigger value="others" className="py-3">Others</TabsTrigger>
+              <TabsTrigger value="electronics" className="py-3 flex items-center gap-2">
+                <CpuIcon className="w-4 h-4" /> Electronics
+              </TabsTrigger>
+              <TabsTrigger value="fmcg" className="py-3 flex items-center gap-2">
+                <Boxes className="w-4 h-4" /> FMCG
+              </TabsTrigger>
+              <TabsTrigger value="healthcare" className="py-3 flex items-center gap-2">
+                <FlaskConical className="w-4 h-4" /> Healthcare
+              </TabsTrigger>
+              <TabsTrigger value="others" className="py-3 flex items-center gap-2">
+                <Network className="w-4 h-4" /> Others
+              </TabsTrigger>
             </TabsList>
             
             <TabsContent value="electronics" className="mt-8">
@@ -316,12 +335,12 @@ export default function OEMSolutionsPage() {
               {
                 title: "Pan-India Sourcing",
                 description: "Access to factories and suppliers across India",
-                icon: Factory
+                icon: Building2
               },
               {
                 title: "Fast Delivery & QC",
                 description: "Reliable quality control and timely deliveries",
-                icon: Clock
+                icon: Truck
               }
             ].map((capability, index) => (
               <motion.div
@@ -533,19 +552,23 @@ export default function OEMSolutionsPage() {
               {[
                 {
                   title: "3-Layer Quality Check",
-                  description: "Factory, Central QC Team, Pre-Dispatch inspection at every stage"
+                  description: "Factory, Central QC Team, Pre-Dispatch inspection at every stage",
+                  icon: <FileCheck className="text-secondary mt-1 mr-3 flex-shrink-0" />
                 },
                 {
                   title: "Certification Support",
-                  description: "FDA, FSSAI, BIS, CE, ROHS support depending on product category"
+                  description: "FDA, FSSAI, BIS, CE, ROHS support depending on product category",
+                  icon: <Award className="text-secondary mt-1 mr-3 flex-shrink-0" />
                 },
                 {
                   title: "Continuous Supplier Audits",
-                  description: "Regular audits to maintain quality standards"
+                  description: "Regular audits to maintain quality standards",
+                  icon: <Medal className="text-secondary mt-1 mr-3 flex-shrink-0" />
                 },
                 {
                   title: "Customer Satisfaction Guarantee",
-                  description: "We ensure your complete satisfaction with the final product"
+                  description: "We ensure your complete satisfaction with the final product",
+                  icon: <Users className="text-secondary mt-1 mr-3 flex-shrink-0" />
                 }
               ].map((quality, index) => (
                 <div key={index} className="bg-card p-6 rounded-lg">

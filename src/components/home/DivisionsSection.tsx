@@ -73,7 +73,7 @@ export function DivisionsSection() {
     {
       id: "naploo",
       title: "Naploo™ – Sleeping Pod Hotels",
-      image: "/assets/pod.avif",
+      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200",
       listItems: [
         "India's First Smart Pod Hotel Chain",
         "Book Pods By Hour (Customer Side)",
@@ -91,7 +91,7 @@ export function DivisionsSection() {
     {
       id: "beauty",
       title: "BIDUA Beauty Care – Skincare & Wellness",
-      image: "/assets/Beauty.png",
+      image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200",
       listItems: [
         "Premium Day and Night Cream for Dark Circles and Dark Spots",
         "Natural, Safe, Dermatologically Tested Products",
@@ -105,7 +105,7 @@ export function DivisionsSection() {
     {
       id: "clouddrive",
       title: "BIDUA CloudDrive™ – Smart Storage Solutions",
-      image: "/assets/Cloud.jpg",
+      image: "https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=1200",
       listItems: [
         "Hybrid Storage Device (Offline + Cloud + Sim + WiFi)",
         "Auto-Sync Data on the Move",
@@ -119,7 +119,7 @@ export function DivisionsSection() {
     {
       id: "oem",
       title: "BIDUA OEM Solutions – Manufacturing Hub",
-      image: "/assets/OEM.jpg",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200",
       listItems: [
         "White-Label and Private Label Solutions",
         "Electronics, FMCG, Beauty, Healthcare, Furniture, Food, Automobiles, and More",
@@ -133,7 +133,7 @@ export function DivisionsSection() {
     {
       id: "it",
       title: "BIDUA IT Connect – B2B Software Portal",
-      image: "/assets/IT solution.webp",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200",
       listItems: [
         "Pre-made and Custom Software Solutions",
         "Centralized Customer Interaction Model",
