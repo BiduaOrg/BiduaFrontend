@@ -29,7 +29,7 @@ const registerSchema = z.object({
   path: ["confirmPassword"],
 });
 
-export default function AuthPage() {
+export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
   const { user, loginMutation, registerMutation } = useAuth();
   const [, navigate] = useLocation();
